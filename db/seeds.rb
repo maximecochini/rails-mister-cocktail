@@ -76,7 +76,22 @@ cocktails.each do |cocktail|
     dose.save
   end
   puts "\nCreated #{temp_c.name} recipe."
+
   alt_separator
+  
+  ratingsnum = rand(1..ratings_max_rand_number)
+
+  puts "Populating #{cocktail} with #{ratingsnum} reviews.\n\n"
+  ratingsnum.times do
+    faker_review = {
+      rating: rand(0..5),
+      content: Faker::Hipster.sentence
+    }
+    review = Review.new(faker_review)
+    review.cocktail = temp_c
+    review.save
+    puts "----- #{review.content}.\n\n"
+  end
 end
 
 puts "END OF SEED - No errors."
