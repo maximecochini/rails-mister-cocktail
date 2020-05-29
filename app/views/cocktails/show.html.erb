@@ -54,7 +54,7 @@
     </div>
     <div class="col-8">
       <% @cocktail.doses.each_with_index do |dose, index| %>
-        <div class="d-flex align-items-center justify-content-between my-4">
+        <div class="dose-row d-flex align-items-center justify-content-between my-4">
           <h3 class="col-1 text-center text-primary"><%= index + 1 %></h3>
           <div class="dose col-11">
             <p><%= dose.description %> <strong><%= dose.ingredient.name %></strong></p>
