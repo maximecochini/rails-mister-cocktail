@@ -1,11 +1,11 @@
 <div class="container mt-4 pt-4">
   <div class="d-flex align-items-center justify-content-between">
-    <h1>Edit <%= @cocktail.name.upcase %></h1>
-    <%= link_to cocktail_path(params[:id]), class: "btn btn-dark mt-4" do %>
+    <h1>Your review for <%= @cocktail.name %></h1>
+    <%= link_to cocktail_path(params[:cocktail_id]), class: "btn btn-dark mt-4" do %>
       <i class="fas fa-caret-left"></i> Back
     <% end %>
   </div>
 </div>
 <div class="container col-4 mt-4 pt-4">
-  <%= render "form", cocktail: @cocktail %>
+  <%= render "form", cocktail: @cocktail, review: @review %>
 </div>

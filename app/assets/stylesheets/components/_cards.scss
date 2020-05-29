@@ -1,9 +1,5 @@
 .card {
   border-color: $main-dark;
-  transition: all ease-in-out .3s;
-  &:hover {
-    transform: scale(1.05);
-  }
 }
 
 .card-deck .card {

@@ -27,16 +27,22 @@
   <div class="card-deck">
   <% @cocktails.each do |cocktail| %>
     <% temp_cocktails_thumb = temp_cocktails_thumbs.sample %>
-    <div class="card">
+    <div class="card pop">
       <%= link_to cocktail_path(cocktail) do %>
         <img src="<%= temp_cocktails_thumb %>" class="card-img-top" alt="<%= cocktail.name %>">
+        
       <% end %>
       <div class="card-body">
         <h3 class="card-title"><%= cocktail.name %></h3>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <%# <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> %>
+        <% cocktail.ingredients.each do |ingredient| %>
+          <span class="badge badge-secondary"><%= ingredient.name %></span>
+        <% end %>
       </div>
       <div class="card-footer d-flex align-items-center justify-content-between">
-        <small class="text-muted"><i class="fas fa-comment-dots"></i> (<%= rand(1..80) %>) <% rand(1..5).times do %> <i class="fas fa-star"></i> <% end %></small>
+        <% reviews_count = cocktail.reviews.count %>
+        <% reviews_average = Review.where(cocktail_id: cocktail).average(:rating).to_i || 0%>
+        <small class="text-muted"><i class="fas fa-comment-dots"></i> (<%= reviews_count %>) <% reviews_average.times do %> <i class="fas fa-star"></i> <% end %></small>
         <div class="footer-prepend">
           <%= link_to cocktail_path(cocktail), class: "btn btn-primary" do %>
             <i class="fas fa-cocktail"></i> RECIPE

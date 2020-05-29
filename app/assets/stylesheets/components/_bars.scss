@@ -1,5 +1,6 @@
 .bar {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: $main-dark;
+  color: white;
   z-index: 1;
   // box-shadow: 0 0 5px $main-dark;
   padding: 0;
@@ -12,7 +13,14 @@
 
   h1 {
     font-size: 2rem;
+    margin-bottom: 0;
   }
+
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
   .btn {
     text-transform: uppercase;
     font-weight: 900;
@@ -20,9 +28,11 @@
     display: block;
     border: none;
     height: 64px;
-    padding: 20px;
+    padding: 22px;
     border-radius: 0;
-    border-left: 1px solid $main-dark;
+    &:first-child {
+      border-left: 1px solid $main-dark;
+    }
     border-right: 1px solid $main-dark;
   }
 }

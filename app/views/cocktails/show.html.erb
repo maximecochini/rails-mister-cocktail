@@ -12,35 +12,41 @@
   "https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg"] %>
 <% temp_cocktails_thumb = temp_cocktails_thumbs.sample %>
 
+<% reviews_count = @cocktail.reviews.count %>
+<% reviews_average = Review.where(cocktail_id: @cocktail).average(:rating).to_i || 0 %>
+
 <div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url(<%=@temp_cocktail_image%>)">
 </div>
 <div class="bar">
   <div class="container d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center justify-content-between">
-      <%= link_to cocktails_path, class: "btn btn-sm btn-dark" do %>
+      <%= link_to cocktails_path, class: "btn btn-sm btn-light" do %>
         <i class="fas fa-caret-left"></i> Back
       <% end %>
       <h1 class="mx-4"><%= @cocktail.name.upcase %></h1>
-      <p class="main-stars"><% rand(1..5).times do %> <i class="fas fa-star"></i> <% end %></p>
+      <p class="main-stars"><% reviews_average.times do %> <i class="fas fa-star"></i> <% end %></p>
     </div>
     <div class="d-flex align-items-center justify-content-between">
-      <%= link_to edit_cocktail_path, class: "btn btn-sm btn-primary" do %>
-        <i class="fas fa-tools"></i> Edit this cocktail
+      <%= link_to new_cocktail_review_path(@cocktail), class: "btn btn-sm btn-secondary" do %>
+        <i class="fas fa-quote-right"></i> Review
       <% end %>
-      <%= link_to cocktail_path(@cocktail), class: "btn btn-sm btn-dark", method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-trash"></i> Delete this cocktail
+      <%= link_to edit_cocktail_path, class: "btn btn-sm btn-light" do %>
+        <i class="fas fa-tools"></i> Edit
+      <% end %>
+      <%= link_to cocktail_path(@cocktail), class: "btn btn-sm btn-primary", method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-trash"></i> Delete
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="container mt-4">
+<div class="container mt-4 pt-4">
   <h2 class="mb-4">Description</h2>
   <p><%= Faker::Restaurant.description %></p>
   <p><% Faker::Hipster.words.each do |word| %><span class="cocktail-tag">#<%= word %></span><% end %></p>
 </div>
 
-<div class="doses container mt-4">
+<div class="doses container mt-4 pt-4">
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h2>DRINK me on RAILS' fancy <%= @cocktail.name.capitalize %> recipe:</h2>
   </div>
@@ -63,6 +69,37 @@
       <% end %>
     </div>
   </div>
-  
-  
 </div>
+
+<% if @cocktail.reviews.empty? == true %>
+  <div class="container mt-4 reviews pt-4">
+    <div class="d-flex align-items-center justify-content-between">
+      <h2><%= @cocktail.name %> has no reviews yet!</h2>
+    </div>
+  </div>
+  <% else %>
+    <div class="container mt-4 reviews pt-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2><%= reviews_count %> reviews</h2>
+      </div>
+      
+      <% @cocktail.reviews.each do |review| %>
+        <div class="review mb-4">
+          <% if review.rating > 0 %>
+            <p><% review.rating.times do %><i class="fas fa-star"></i><% end %></p>
+          <% else %>
+            <p><i class="fas fa-star-half-alt"></i></p>
+          <% end %>
+          <p><%= review.content %></p>
+          <div class="container d-flex align-items-center justify-content-end">
+            <%= link_to edit_review_path(review), class: "mr-4" do %>
+              <i class="fas fa-pencil-alt"></i> Edit this review
+            <% end %>
+            <%= link_to review_path(review), class: "", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-eraser"></i> Delete this review
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+<% end %>
