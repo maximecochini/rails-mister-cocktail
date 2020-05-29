@@ -1,0 +1,43 @@
+.main-hero {
+  height: 50vh;
+
+  $hero-image: "https://images.pexels.com/photos/605408/pexels-photo-605408.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url($hero-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  h1 {
+    font-size: 105px;
+  }
+  .hero-logo {
+    width: 200px;
+    padding-bottom: 10px;
+  }
+  @media (min-width: 576px) and (max-width: 992px) {
+    .hero-logo {
+      width: 18vw;
+    }
+    h1 {
+      font-size: 9vw;
+    }
+  }
+  @media (max-width: 576px) {
+    .hero-logo {
+      width: 18vw;
+    }
+    h1 {
+      font-size: 9vw;
+    }
+  }
+}
+
+.hero {
+  height: 30vh;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

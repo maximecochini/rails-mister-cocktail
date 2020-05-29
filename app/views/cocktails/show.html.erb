@@ -1,2 +1,68 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<% @temp_cocktail_image = "https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Ffac.2F2018.2F07.2F30.2Fb2d73f10-3760-4955-beb2-b95d6595e5e9.2Ejpeg/850x478/quality/90/crop-from/center/lemon-drop.jpeg" %>
+<% temp_cocktails_thumbs = [
+  "https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/tppn6i1589574695.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/hz7p4t1589575281.jpg",
+  "https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg"] %>
+<% temp_cocktails_thumb = temp_cocktails_thumbs.sample %>
+
+<div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url(<%=@temp_cocktail_image%>)">
+</div>
+<div class="bar">
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between">
+      <%= link_to cocktails_path, class: "btn btn-sm btn-dark" do %>
+        <i class="fas fa-caret-left"></i> Back
+      <% end %>
+      <h1 class="mx-4"><%= @cocktail.name.upcase %></h1>
+      <p class="main-stars"><% rand(1..5).times do %> <i class="fas fa-star"></i> <% end %></p>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <%= link_to edit_cocktail_path, class: "btn btn-sm btn-primary" do %>
+        <i class="fas fa-tools"></i> Edit this cocktail
+      <% end %>
+      <%= link_to cocktail_path(@cocktail), class: "btn btn-sm btn-dark", method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-trash"></i> Delete this cocktail
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2 class="mb-4">Description</h2>
+  <p><%= Faker::Restaurant.description %></p>
+  <p><% Faker::Hipster.words.each do |word| %><span class="cocktail-tag">#<%= word %></span><% end %></p>
+</div>
+
+<div class="doses container mt-4">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h2>DRINK me on RAILS' fancy <%= @cocktail.name.capitalize %> recipe:</h2>
+  </div>
+  
+  <div class="d-flex align-items-start">
+    <div class="card mt-4 col-4 p-0">
+      <img src="<%= temp_cocktails_thumb %>" class="card-img-top" alt="<%= @cocktail.name %>">
+      <div class="card-footer d-flex align-items-center justify-content-between">
+        <small class="text-muted"><i class="fas fa-fire"></i> Our nasty <%= @cocktail.name.capitalize %>.</small>
+      </div>
+    </div>
+    <div class="col-8">
+      <% @cocktail.doses.each_with_index do |dose, index| %>
+        <div class="d-flex align-items-center justify-content-between my-4">
+          <h3 class="col-1 text-center text-primary"><%= index + 1 %></h3>
+          <div class="dose col-11">
+            <p><%= dose.description %> <strong><%= dose.ingredient.name %></strong></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  
+</div>

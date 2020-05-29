@@ -1,0 +1,57 @@
+.card {
+  border-color: $main-dark;
+}
+
+.card-deck .card {
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  // Making Bootstrap cards responsive
+  @media (min-width: 992px) {
+    min-width: 30%;
+    max-width: 30%;
+    margin-left: 0px;
+    margin-right: 5%;
+    &:nth-child(3n+0) {
+      margin-right: 0%;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 992px) {
+    min-width: 45%;
+    max-width: 45%;
+    margin-left: 0px;
+    margin-right: 10%;
+    &:nth-child(2n+0) {
+      margin-right: 0%;
+    }
+  }
+
+  img {
+    // box-shadow: 0 0 5px $main-dark;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .card-footer {
+    padding: 0 0 0 1.25rem;
+  }
+
+  .footer-prepend .btn {
+    border-bottom-right-radius: 8px;
+  }
+}
+
+.doses .card {
+  border-radius: 8px;
+  img {
+    // box-shadow: 0 0 5px $main-dark;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}

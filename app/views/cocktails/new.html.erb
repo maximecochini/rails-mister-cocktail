@@ -1,2 +1,7 @@
-<h1>Cocktails#new</h1>
-<p>Find me in app/views/cocktails/new.html.erb</p>
+<div class="container col-6 mt-4">
+  <h1>NEW DRINK</h1>
+
+  <%= render "form", cocktail: @cocktail %>
+
+  <%= link_to "< Back", cocktails_path, class: "btn btn-secondary col-2 mt-4" %>
+</div>

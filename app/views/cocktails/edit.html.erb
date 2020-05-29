@@ -1,2 +1,7 @@
-<h1>Cocktails#edit</h1>
-<p>Find me in app/views/cocktails/edit.html.erb</p>
+<div class="container col-6 mt-4">
+  <h1>EDIT <%= @cocktail.name.upcase %></h1>
+
+  <%= render "form", cocktail: @cocktail %>
+
+  <%= link_to "< Back", cocktails_path, class: "btn btn-secondary col-2 mt-4" %>
+</div>

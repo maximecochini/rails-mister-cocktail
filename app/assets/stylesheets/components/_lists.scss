@@ -1,0 +1,42 @@
+// List with badges style
+.list-group p {
+  margin-bottom: 0;
+}
+.list-group-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  &:first-child {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+  }
+  &:last-child {
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+  }
+}
+
+// Cocktails list
+.cocktails-list p {
+  font-weight: bold;
+
+  span {
+    font-weight: normal;
+    opacity: .7;
+  }
+}
+
+// Reviews list
+.reviews {
+  padding-bottom:200px;
+}
+.review {
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 8px;
+  a {
+    color: #808080;
+    &:hover {
+      color: #C12020;
+    }
+  }
+}
